@@ -42,10 +42,47 @@ const GEO_CACHE = 'scripts/geo-cache.json';
 const ENDPOINT =
   'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade';
 
-console.log(
-  `인증키 ${RAW_KEY.length}자 · ${/%[0-9A-Fa-f]{2}/.test(RAW_KEY) ? 'Encoding 형태(그대로 사용)' : 'Decoding 형태(인코딩 후 사용)'}` +
-  ` · 카카오 키 ${KAKAO ? '있음' : '없음'}`,
-);
+const diag = {
+  ranAt: new Date().toISOString(),
+  molitKeyLen: RAW_KEY.length,
+  molitKeyForm: /%[0-9A-Fa-f]{2}/.test(RAW_KEY) ? 'encoding' : 'decoding',
+  kakaoKeyLen: KAKAO.length,
+  kakaoProbe: null,
+  regions: [],
+};
+
+/**
+ * 카카오 키를 한 번 실제로 써 본다.
+ * 키가 없거나 틀리면 좌표를 못 채워 결과가 전부 비는데,
+ * 그걸 40분 뒤에 알게 되면 곤란하다. 여기서 즉시 멈춘다.
+ */
+async function probeKakao() {
+  if (!KAKAO) {
+    diag.kakaoProbe = 'missing';
+    return '카카오 REST 키(KAKAO_REST_KEY)가 비어 있습니다.';
+  }
+  const res = await fetch(
+    'https://dapi.kakao.com/v2/local/search/address.json?query=' +
+      encodeURIComponent('서울 서초구 반포동 20-1'),
+    { headers: { Authorization: `KakaoAK ${KAKAO}` } },
+  );
+  const body = await res.text();
+  if (!res.ok) {
+    diag.kakaoProbe = `http_${res.status}`;
+    diag.kakaoError = body.slice(0, 200);
+    if (res.status === 401) {
+      return `카카오 키가 거부됐습니다 (401). REST API 키가 맞는지 확인하세요 — JavaScript 키나 네이티브 앱 키는 이 API에 쓸 수 없습니다. 응답: ${body.slice(0, 150)}`;
+    }
+    return `카카오 API 오류 ${res.status}: ${body.slice(0, 150)}`;
+  }
+  const j = JSON.parse(body);
+  if (!j.documents?.length) {
+    diag.kakaoProbe = 'no_result';
+    return null; // 키는 유효한데 그 주소만 못 찾은 것 — 계속 진행
+  }
+  diag.kakaoProbe = 'ok';
+  return null;
+}
 
 const lawds = JSON.parse(readFileSync('scripts/lawd.json', 'utf8'))
   .filter((l) => ONLY.length === 0 || ONLY.includes(l.code));
@@ -113,7 +150,11 @@ async function geocode(address) {
 
   const url = `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(address)}`;
   const res = await fetch(url, { headers: { Authorization: `KakaoAK ${KAKAO}` } });
-  if (!res.ok) return null;
+  if (!res.ok) {
+    // 캐시에 남기지 않는다 — 일시적 오류일 수 있어 다음 실행에서 다시 시도한다
+    diag.geocodeHttpErrors = (diag.geocodeHttpErrors ?? 0) + 1;
+    return null;
+  }
   const j = await res.json();
   const f = j.documents?.[0];
   // 실패도 캐시한다. 매번 다시 시도하면 호출량만 낭비된다.
@@ -164,9 +205,29 @@ function aggregate(deals) {
     .sort((a, b) => b.sampleCount - a.sampleCount);
 }
 
+function writeDiag() {
+  mkdirSync(OUT, { recursive: true });
+  writeFileSync(`${OUT}/_status.json`, JSON.stringify(diag, null, 2));
+}
+
 async function main() {
   mkdirSync(OUT, { recursive: true });
   mkdirSync(`${OUT}/full`, { recursive: true });
+
+  console.log(
+    `인증키 ${RAW_KEY.length}자 · ${diag.molitKeyForm === 'encoding' ? 'Encoding(그대로 사용)' : 'Decoding(인코딩 후 사용)'}` +
+    ` · 카카오 키 ${KAKAO.length}자`,
+  );
+
+  const kakaoError = await probeKakao();
+  writeDiag();
+  if (kakaoError) {
+    console.error(`\n중단: ${kakaoError}`);
+    console.error('좌표를 채울 수 없어 결과가 전부 비게 되므로 여기서 멈춥니다.');
+    console.error('docs/v1/_status.json 에 진단 정보를 남겼습니다.');
+    process.exit(1);
+  }
+  console.log('카카오 키 확인 완료\n');
 
   const baseAt = new Date().toISOString().slice(0, 10);
   const index = [];
@@ -245,6 +306,15 @@ async function main() {
     writeFileSync(`${OUT}/full/${lawd.code}.json`, JSON.stringify({ items: fulls, provenance }));
     writeFileSync(GEO_CACHE, JSON.stringify(geo, null, 0));
 
+    diag.regions.push({
+      code: lawd.code,
+      sigungu: lawd.sigungu,
+      complexesFound: byComplex.size,
+      withCoords: summaries.length,
+      monthsFailed: failed,
+    });
+    writeDiag();
+
     if (bbox) index.push({ code: lawd.code, sido: lawd.sido, sigungu: lawd.sigungu, bbox, count: summaries.length });
     console.log(`${lawd.sigungu}(${lawd.code}) — 단지 ${summaries.length}개, 좌표 미매칭 ${byComplex.size - summaries.length}개`);
   }
@@ -255,6 +325,8 @@ async function main() {
     regions: index,
   }));
   writeFileSync(`${OUT}/search.json`, JSON.stringify({ baseAt, items: searchIndex }));
+  diag.finishedAt = new Date().toISOString();
+  writeDiag();
   console.log(`\n완료 — 지역 ${index.length}개, 단지 ${searchIndex.length}개, 기준 ${baseAt}`);
 }
 
