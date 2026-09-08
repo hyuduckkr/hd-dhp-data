@@ -1,0 +1,9 @@
+{
+  "ranAt": "2026-09-08T07:33:30.825Z",
+  "molitKeyLen": 98,
+  "molitKeyForm": "encoding",
+  "kakaoKeyLen": 32,
+  "kakaoProbe": "http_403",
+  "regions": [],
+  "kakaoError": "{\"errorType\":\"NotAuthorizedError\",\"message\":\"App(HD DHP) disabled OPEN_MAP_AND_LOCAL service.\"}"
+}
