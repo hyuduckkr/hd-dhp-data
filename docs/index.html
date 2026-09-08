@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>HD DHP 시세 데이터</title>
+<style>
+  body{font-family:system-ui,-apple-system,'Malgun Gothic',sans-serif;max-width:640px;margin:64px auto;padding:0 24px;color:#1A1714;background:#FBF9F6;line-height:1.7}
+  h1{font-size:22px;letter-spacing:-.5px}
+  code{background:#F2EEE7;padding:2px 6px;border-radius:5px;font-size:13px}
+  table{border-collapse:collapse;width:100%;margin:16px 0}
+  td,th{border-bottom:1px solid #EBE5DC;padding:8px 4px;text-align:left;font-size:14px}
+  .note{font-size:12px;color:#7A7168;margin-top:32px;border-top:1px solid #EBE5DC;padding-top:16px}
+</style>
+<h1>HD DHP 시세 데이터</h1>
+<p>국토교통부 실거래가를 매일 수집해 정적 JSON으로 제공합니다.</p>
+<table>
+  <tr><th>경로</th><th>내용</th></tr>
+  <tr><td><code>v1/index.json</code></td><td>수집 지역 목록 + 경계 상자</td></tr>
+  <tr><td><code>v1/&lt;법정동코드&gt;.json</code></td><td>지도용 단지 요약</td></tr>
+  <tr><td><code>v1/full/&lt;법정동코드&gt;.json</code></td><td>상세 — 면적 타입별 전체 거래</td></tr>
+  <tr><td><code>v1/search.json</code></td><td>단지명 검색 인덱스</td></tr>
+</table>
+<p class="note">
+출처: 국토교통부 실거래가 공개시스템 (공공데이터포털 Open API).
+계약 후 30일 신고 기한이 있어 최근 2개월 구간은 이후 건수·금액이 늘어날 수 있습니다.
+본 정보는 참고용이며 투자 자문이 아닙니다.
+</p>
