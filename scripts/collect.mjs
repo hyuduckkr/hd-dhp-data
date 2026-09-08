@@ -17,7 +17,16 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 
-const KEY = process.env.MOLIT_SERVICE_KEY;
+const RAW_KEY = (process.env.MOLIT_SERVICE_KEY ?? '').trim();
+
+/**
+ * 공공데이터포털은 인증키를 두 형태로 준다.
+ *   Encoding 키 — 이미 URL 인코딩된 문자열 (%2B, %3D 등이 들어있다)
+ *   Decoding 키 — 원본 (+, = 등이 그대로)
+ * Encoding 키를 다시 인코딩하면 %2B 가 %252B 가 되어 인증에 실패한다
+ * ("등록되지 않은 서비스키", 코드 30). 어느 쪽이 들어와도 되게 판별한다.
+ */
+const KEY = /%[0-9A-Fa-f]{2}/.test(RAW_KEY) ? RAW_KEY : encodeURIComponent(RAW_KEY);
 const KAKAO = process.env.KAKAO_REST_KEY ?? '';
 const MONTHS = Number(process.env.MONTHS ?? 12);
 const ONLY = (process.env.ONLY ?? '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -32,6 +41,11 @@ const OUT = 'docs/v1';
 const GEO_CACHE = 'scripts/geo-cache.json';
 const ENDPOINT =
   'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade';
+
+console.log(
+  `인증키 ${RAW_KEY.length}자 · ${/%[0-9A-Fa-f]{2}/.test(RAW_KEY) ? 'Encoding 형태(그대로 사용)' : 'Decoding 형태(인코딩 후 사용)'}` +
+  ` · 카카오 키 ${KAKAO ? '있음' : '없음'}`,
+);
 
 const lawds = JSON.parse(readFileSync('scripts/lawd.json', 'utf8'))
   .filter((l) => ONLY.length === 0 || ONLY.includes(l.code));
@@ -58,7 +72,7 @@ function months(n) {
 
 async function fetchMonth(lawdCd, ym) {
   const url =
-    `${ENDPOINT}?serviceKey=${encodeURIComponent(KEY)}` +
+    `${ENDPOINT}?serviceKey=${KEY}` +
     `&LAWD_CD=${lawdCd}&DEAL_YMD=${ym}&numOfRows=1000&pageNo=1`;
   const res = await fetch(url);
   const xml = await res.text();
