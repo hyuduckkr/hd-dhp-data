@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-09T21:19:43.679Z",
+  "ranAt": "2026-09-10T21:19:03.089Z",
   "molitKeyLen": 98,
   "molitKeyForm": "encoding",
   "kakaoKeyLen": 32,
@@ -29,8 +29,8 @@
     {
       "code": "11200",
       "sigungu": "성동구",
-      "complexesFound": 135,
-      "withCoords": 135,
+      "complexesFound": 134,
+      "withCoords": 134,
       "monthsFailed": 0
     },
     {
@@ -113,8 +113,8 @@
     {
       "code": "11500",
       "sigungu": "강서구",
-      "complexesFound": 420,
-      "withCoords": 420,
+      "complexesFound": 421,
+      "withCoords": 421,
       "monthsFailed": 0
     },
     {
@@ -162,15 +162,15 @@
     {
       "code": "11680",
       "sigungu": "강남구",
-      "complexesFound": 376,
-      "withCoords": 376,
+      "complexesFound": 377,
+      "withCoords": 377,
       "monthsFailed": 0
     },
     {
       "code": "11710",
       "sigungu": "송파구",
-      "complexesFound": 324,
-      "withCoords": 324,
+      "complexesFound": 323,
+      "withCoords": 323,
       "monthsFailed": 0
     },
     {
@@ -181,5 +181,5 @@
       "monthsFailed": 0
     }
   ],
-  "finishedAt": "2026-09-09T21:23:10.608Z"
+  "finishedAt": "2026-09-10T21:21:50.990Z"
 }
