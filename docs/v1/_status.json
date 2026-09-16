@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-15T21:20:24.280Z",
+  "ranAt": "2026-09-16T21:21:48.170Z",
   "molitKeyLen": 98,
   "molitKeyForm": "encoding",
   "kakaoKeyLen": 32,
@@ -8,8 +8,8 @@
     {
       "code": "11110",
       "sigungu": "종로구",
-      "complexesFound": 83,
-      "withCoords": 83,
+      "complexesFound": 84,
+      "withCoords": 84,
       "monthsFailed": 0
     },
     {
@@ -36,22 +36,22 @@
     {
       "code": "11215",
       "sigungu": "광진구",
-      "complexesFound": 173,
-      "withCoords": 172,
+      "complexesFound": 174,
+      "withCoords": 173,
       "monthsFailed": 0
     },
     {
       "code": "11230",
       "sigungu": "동대문구",
-      "complexesFound": 238,
-      "withCoords": 238,
+      "complexesFound": 239,
+      "withCoords": 239,
       "monthsFailed": 0
     },
     {
       "code": "11260",
       "sigungu": "중랑구",
-      "complexesFound": 204,
-      "withCoords": 204,
+      "complexesFound": 205,
+      "withCoords": 205,
       "monthsFailed": 0
     },
     {
@@ -92,15 +92,15 @@
     {
       "code": "11410",
       "sigungu": "서대문구",
-      "complexesFound": 199,
-      "withCoords": 199,
+      "complexesFound": 200,
+      "withCoords": 200,
       "monthsFailed": 0
     },
     {
       "code": "11440",
       "sigungu": "마포구",
-      "complexesFound": 237,
-      "withCoords": 237,
+      "complexesFound": 238,
+      "withCoords": 238,
       "monthsFailed": 0
     },
     {
@@ -148,8 +148,8 @@
     {
       "code": "11620",
       "sigungu": "관악구",
-      "complexesFound": 201,
-      "withCoords": 201,
+      "complexesFound": 202,
+      "withCoords": 202,
       "monthsFailed": 0
     },
     {
@@ -162,24 +162,24 @@
     {
       "code": "11680",
       "sigungu": "강남구",
-      "complexesFound": 379,
-      "withCoords": 379,
+      "complexesFound": 380,
+      "withCoords": 380,
       "monthsFailed": 0
     },
     {
       "code": "11710",
       "sigungu": "송파구",
-      "complexesFound": 324,
-      "withCoords": 324,
+      "complexesFound": 323,
+      "withCoords": 323,
       "monthsFailed": 0
     },
     {
       "code": "11740",
       "sigungu": "강동구",
-      "complexesFound": 362,
-      "withCoords": 361,
+      "complexesFound": 363,
+      "withCoords": 362,
       "monthsFailed": 0
     }
   ],
-  "finishedAt": "2026-09-15T21:23:44.125Z"
+  "finishedAt": "2026-09-16T21:25:03.944Z"
 }
