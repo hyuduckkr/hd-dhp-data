@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-20T21:19:43.813Z",
+  "ranAt": "2026-09-21T21:20:40.266Z",
   "molitKeyLen": 98,
   "molitKeyForm": "encoding",
   "kakaoKeyLen": 32,
@@ -8,8 +8,8 @@
     {
       "code": "11110",
       "sigungu": "종로구",
-      "complexesFound": 85,
-      "withCoords": 85,
+      "complexesFound": 86,
+      "withCoords": 86,
       "monthsFailed": 0
     },
     {
@@ -22,8 +22,8 @@
     {
       "code": "11170",
       "sigungu": "용산구",
-      "complexesFound": 154,
-      "withCoords": 154,
+      "complexesFound": 155,
+      "withCoords": 155,
       "monthsFailed": 0
     },
     {
@@ -85,8 +85,8 @@
     {
       "code": "11380",
       "sigungu": "은평구",
-      "complexesFound": 317,
-      "withCoords": 317,
+      "complexesFound": 318,
+      "withCoords": 318,
       "monthsFailed": 0
     },
     {
@@ -99,15 +99,15 @@
     {
       "code": "11440",
       "sigungu": "마포구",
-      "complexesFound": 238,
-      "withCoords": 238,
+      "complexesFound": 239,
+      "withCoords": 239,
       "monthsFailed": 0
     },
     {
       "code": "11470",
       "sigungu": "양천구",
-      "complexesFound": 312,
-      "withCoords": 312,
+      "complexesFound": 313,
+      "withCoords": 313,
       "monthsFailed": 0
     },
     {
@@ -141,15 +141,15 @@
     {
       "code": "11590",
       "sigungu": "동작구",
-      "complexesFound": 176,
-      "withCoords": 176,
+      "complexesFound": 178,
+      "withCoords": 178,
       "monthsFailed": 0
     },
     {
       "code": "11620",
       "sigungu": "관악구",
-      "complexesFound": 202,
-      "withCoords": 202,
+      "complexesFound": 203,
+      "withCoords": 203,
       "monthsFailed": 0
     },
     {
@@ -169,8 +169,8 @@
     {
       "code": "11710",
       "sigungu": "송파구",
-      "complexesFound": 323,
-      "withCoords": 323,
+      "complexesFound": 325,
+      "withCoords": 325,
       "monthsFailed": 0
     },
     {
@@ -181,5 +181,5 @@
       "monthsFailed": 0
     }
   ],
-  "finishedAt": "2026-09-20T21:21:34.554Z"
+  "finishedAt": "2026-09-21T21:22:32.530Z"
 }
