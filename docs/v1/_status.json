@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-23T21:21:28.358Z",
+  "ranAt": "2026-09-24T21:21:02.040Z",
   "molitKeyLen": 98,
   "molitKeyForm": "encoding",
   "kakaoKeyLen": 32,
@@ -155,8 +155,8 @@
     {
       "code": "11650",
       "sigungu": "서초구",
-      "complexesFound": 415,
-      "withCoords": 415,
+      "complexesFound": 413,
+      "withCoords": 413,
       "monthsFailed": 0
     },
     {
@@ -181,5 +181,5 @@
       "monthsFailed": 0
     }
   ],
-  "finishedAt": "2026-09-23T21:23:53.107Z"
+  "finishedAt": "2026-09-24T21:23:13.614Z"
 }
