@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-09T00:47:42.250Z",
+  "ranAt": "2026-11-10T03:28:47.534Z",
   "molitKeyLen": 98,
   "molitKeyForm": "encoding",
   "kakaoKeyLen": 32,
@@ -106,8 +106,8 @@
     {
       "code": "11470",
       "sigungu": "양천구",
-      "complexesFound": 306,
-      "withCoords": 306,
+      "complexesFound": 307,
+      "withCoords": 307,
       "monthsFailed": 0
     },
     {
@@ -127,8 +127,8 @@
     {
       "code": "11545",
       "sigungu": "금천구",
-      "complexesFound": 93,
-      "withCoords": 93,
+      "complexesFound": 94,
+      "withCoords": 94,
       "monthsFailed": 0
     },
     {
@@ -181,5 +181,5 @@
       "monthsFailed": 0
     }
   ],
-  "finishedAt": "2026-11-09T00:49:32.888Z"
+  "finishedAt": "2026-11-10T03:31:54.064Z"
 }
