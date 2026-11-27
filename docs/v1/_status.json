@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-26T03:30:04.245Z",
+  "ranAt": "2026-11-27T03:36:22.904Z",
   "molitKeyLen": 98,
   "molitKeyForm": "encoding",
   "kakaoKeyLen": 32,
@@ -85,8 +85,8 @@
     {
       "code": "11380",
       "sigungu": "은평구",
-      "complexesFound": 324,
-      "withCoords": 324,
+      "complexesFound": 325,
+      "withCoords": 325,
       "monthsFailed": 0
     },
     {
@@ -99,8 +99,8 @@
     {
       "code": "11440",
       "sigungu": "마포구",
-      "complexesFound": 239,
-      "withCoords": 239,
+      "complexesFound": 240,
+      "withCoords": 240,
       "monthsFailed": 0
     },
     {
@@ -181,5 +181,5 @@
       "monthsFailed": 0
     }
   ],
-  "finishedAt": "2026-11-26T03:33:15.156Z"
+  "finishedAt": "2026-11-27T03:39:34.887Z"
 }
